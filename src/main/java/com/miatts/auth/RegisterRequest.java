@@ -1,10 +1,10 @@
 package com.miatts.auth;
 
+import com.miatts.backend.common.role.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.miatts.backend.common.appuser.Role;
 
 @Data
 @Builder
@@ -15,6 +15,6 @@ public class RegisterRequest {
     private String lastName;
     private String email;
     private String password;
-    private Role role;
+//    private Role role;
 }
 

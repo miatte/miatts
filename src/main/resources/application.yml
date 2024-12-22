@@ -18,6 +18,6 @@ application:
   security:
     jwt:
       secret-key: ES50/67VPIWrjrvU8LfTIglKGlW8XVe6tw74BxwK4mnehYxV1YxxlSRw/EyoPR6RIYPJ7U8/aylqCfAFofA4rcCL05sts4uFuhhyzxlhRGAO8K1UchSXb15lgquXm5TXTO9IrN2X5VGS+M02iEf5jjItHd1uMKCCODNRPJraTKAEjxkZWxk2tCLDcT85q24uhY6WpExJ0Or4f31VFNr4+oaMlAGdHBzuP23q4p9pxhcsylorQpktDh52UD9Xoswe76SMqJIW3PYreaBFPIAzWyST6pC17xFagrqAEU/ysvFEsUWnJJVsxNGy+o6lQQStpK0cMPMxQm5NfjoEaeuBxYcnbYahZ8ASP8TRZ1/SWkg=
-      expiration: 60000 #One day
+      expiration: 600000 #One day
       refresh-token:
         expiration: 604800000 # Seven days

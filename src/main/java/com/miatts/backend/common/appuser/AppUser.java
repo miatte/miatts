@@ -1,16 +1,17 @@
 package com.miatts.backend.common.appuser;
 
+import com.miatts.backend.common.base.BaseEntity;
+import com.miatts.backend.common.role.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import com.miatts.backend.common.token.Token;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -18,22 +19,25 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "_user")
-public class AppUser implements UserDetails {
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class AppUser extends BaseEntity<Integer> implements UserDetails {
+//    @Id
+//    @GeneratedValue
+//    private Integer id;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Role> roles;
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return role.getAuthorities();
+        return roles
+                .stream()
+                .map(r -> new SimpleGrantedAuthority(r.getName()))
+                .collect(Collectors.toList());
     }
 
     @Override
